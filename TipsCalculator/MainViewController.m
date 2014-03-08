@@ -17,11 +17,13 @@
 @property (strong, nonatomic) IBOutlet UILabel *splitByLabel;
 @property (strong, nonatomic) IBOutlet UILabel *splitTotal;
 @property (strong, nonatomic) NSString *s;
+@property (nonatomic) float f;
 @end
 
 @implementation MainViewController
 @synthesize amount;
 @synthesize s;
+@synthesize f;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,7 +39,11 @@
     [super viewDidLoad];
     s = @"";
 	// Do any additional setup after loading the view.
-    
+   
+    [amount addTarget:self
+                    action:@selector(textFieldDidChange:)
+          forControlEvents:UIControlEventEditingChanged];
+    f = 0.15;
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,13 +71,22 @@
     return YES;
 }
 
+- (IBAction)textFieldDidChange:(id)sender {
+    [self.tipsLabel setText:[NSString stringWithFormat:@"%0.2f",];
+}
+
+
 - (IBAction)press15:(UIButton *)sender {
+    f=0.15;
 }
 - (IBAction)press18:(UIButton *)sender {
+    f=0.18;
 }
 - (IBAction)press20:(UIButton *)sender {
+    f=0.20;
 }
 - (IBAction)press25:(UIButton *)sender {
+    f=0.25;
 }
 
 
