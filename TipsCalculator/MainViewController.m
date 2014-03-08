@@ -43,7 +43,8 @@
     [amount addTarget:self
                     action:@selector(textFieldDidChange:)
           forControlEvents:UIControlEventEditingChanged];
-    f = 0.15;
+    
+    self.f = 0.15;
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,6 +73,7 @@
 }
 
 - (IBAction)textFieldDidChange:(id)sender {
+    CGFloat *bill = (CGFloat)[self.amount.text floatValue];
     [self.tipsLabel setText:[NSString stringWithFormat:@"%0.2f",];
 }
 
