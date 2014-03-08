@@ -7,7 +7,7 @@
 //
 
 #import "MainViewController.h"
-#import "ResultViewController.h"
+#import "dotField.h"
 
 @interface MainViewController ()
 
@@ -41,159 +41,35 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-- (IBAction)pressOne:(UIButton *)sender {
-    if ([amount.text  isEqual: @"0"]) {
-        
-        s = [s stringByAppendingString:@"1"];
-        [amount setText:s];
+/*
+- (BOOL)textField:(dotField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *stringPlace = @"0|[1-9][0-9]*";
+    NSPredicate *testPlace = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", stringPlace];
+    BOOL matches = [testPlace evaluateWithObject:string];
+    
+    if (!matches && string.length > 5)
+    {
+        return NO;
     }
-    else{
-        s = amount.text;
-        s = [s stringByAppendingString:@"1"];
-        [amount setText:s];
-
-    }
-   
+    return YES;
 }
-- (IBAction)pressTwo:(UIButton *)sender {
-    if ([amount.text  isEqual: @"0"]) {
-        
-        s = [s stringByAppendingString:@"2"];
-        [amount setText:s];
-    }
-    else{
-        s = amount.text;
-        s = [s stringByAppendingString:@"2"];
-        [amount setText:s];
-        
-    }
-}
-- (IBAction)pressThree:(UIButton *)sender {
-    if ([amount.text  isEqual: @"0"]) {
-        
-        s = [s stringByAppendingString:@"3"];
-        [amount setText:s];
-    }
-    else{
-        s = amount.text;
-        s = [s stringByAppendingString:@"3"];
-        [amount setText:s];
-        
-    }
-}
-- (IBAction)pressFour:(UIButton *)sender {
-    if ([amount.text  isEqual: @"0"]) {
-        
-        s = [s stringByAppendingString:@"4"];
-        [amount setText:s];
-    }
-    else{
-        s = amount.text;
-        s = [s stringByAppendingString:@"4"];
-        [amount setText:s];
-        
-    }
-}
-- (IBAction)pressFive:(UIButton *)sender {
-    if ([amount.text  isEqual: @"0"]) {
-        
-        s = [s stringByAppendingString:@"5"];
-        [amount setText:s];
-    }
-    else{
-        s = amount.text;
-        s = [s stringByAppendingString:@"5"];
-        [amount setText:s];
-        
-    }
-}
-- (IBAction)pressSix:(UIButton *)sender {
-    if ([amount.text  isEqual: @"0"]) {
-        
-        s = [s stringByAppendingString:@"6"];
-        [amount setText:s];
-    }
-    else{
-        s = amount.text;
-        s = [s stringByAppendingString:@"6"];
-        [amount setText:s];
-        
-    }
-}
-- (IBAction)pressSeven:(UIButton *)sender {
-    if ([amount.text  isEqual: @"0"]) {
-        
-        s = [s stringByAppendingString:@"7"];
-        [amount setText:s];
-    }
-    else{
-        s = amount.text;
-        s = [s stringByAppendingString:@"7"];
-        [amount setText:s];
-        
-    }
-}
-- (IBAction)pressEight:(UIButton *)sender {
-    if ([amount.text  isEqual: @"0"]) {
-        
-        s = [s stringByAppendingString:@"8"];
-        [amount setText:s];
-    }
-    else{
-        s = amount.text;
-        s = [s stringByAppendingString:@"8"];
-        [amount setText:s];
-        
-    }
-}
-- (IBAction)pressNine:(UIButton *)sender {
-    if ([amount.text  isEqual: @"0"]) {
-        
-        s = [s stringByAppendingString:@"9"];
-        [amount setText:s];
-    }
-    else{
-        s = amount.text;
-        s = [s stringByAppendingString:@"9"];
-        [amount setText:s];
-        
-    }
-}
-- (IBAction)pressZero:(UIButton *)sender {
-    if ([amount.text  isEqual: @"0"]) {
-        
-        s = [s stringByAppendingString:@"0"];
-        [amount setText:s];
-    }
-    else{
-        s = amount.text;
-        s = [s stringByAppendingString:@"0"];
-        [amount setText:s];
-        
-    }
-}
-- (IBAction)pressDecimal:(UIButton *)sender {
-    if ([amount.text rangeOfString:@"."].location == NSNotFound) {
-        s = amount.text;
-        s = [s stringByAppendingString:@"."];
-        [amount setText:s];
-    }
+*/
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
+    NSCharacterSet *nonNumberSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
+    return ([string stringByTrimmingCharactersInSet:nonNumberSet].length > 0) || [string isEqualToString:@""];
 }
 
-- (IBAction)pressClear:(UIButton *)sender {
-    s = @"";
-    [amount setText:@""];
-}
-- (IBAction)pressConfirm:(UIButton *)sender {
-}
+
+
+/*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"toResult"]) {
         ResultViewController *a = segue.destinationViewController;
         a.valueCal = amount.text;
     }
 }
-
+*/
 
 
 
