@@ -10,9 +10,12 @@
 #import "dotField.h"
 
 @interface MainViewController ()
-
-@property (strong, nonatomic) IBOutlet UILabel *amount;
-
+@property (weak, nonatomic) IBOutlet UITextField *amount;
+@property (strong, nonatomic) IBOutlet UILabel *tipsLabel;
+@property (strong, nonatomic) IBOutlet UILabel *totalLabel;
+@property (strong, nonatomic) IBOutlet UISlider *splitSlider;
+@property (strong, nonatomic) IBOutlet UILabel *splitByLabel;
+@property (strong, nonatomic) IBOutlet UILabel *splitTotal;
 @property (strong, nonatomic) NSString *s;
 @end
 
@@ -34,6 +37,7 @@
     [super viewDidLoad];
     s = @"";
 	// Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -41,25 +45,34 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-/*
-- (BOOL)textField:(dotField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+
+- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    NSString *stringPlace = @"0|[1-9][0-9]*";
-    NSPredicate *testPlace = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", stringPlace];
-    BOOL matches = [testPlace evaluateWithObject:string];
-    
-    if (!matches && string.length > 5)
+    if (textField == self.amount)
     {
-        return NO;
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        NSString *expression = @"^(0|[1-9][0-9]*)?(\\.([0-9]{1,2})?)?$";
+        NSError *error = nil;
+        NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression
+                                                                               options:NSRegularExpressionCaseInsensitive
+                                                                                 error:&error];
+        NSUInteger numberOfMatches = [regex numberOfMatchesInString:newString
+                                                            options:0
+                                                              range:NSMakeRange(0, [newString length])];
+        if (numberOfMatches == 0)
+            return NO;
     }
     return YES;
 }
-*/
-- (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-    NSCharacterSet *nonNumberSet = [[NSCharacterSet decimalDigitCharacterSet] invertedSet];
-    return ([string stringByTrimmingCharactersInSet:nonNumberSet].length > 0) || [string isEqualToString:@""];
-}
 
+- (IBAction)press15:(UIButton *)sender {
+}
+- (IBAction)press18:(UIButton *)sender {
+}
+- (IBAction)press20:(UIButton *)sender {
+}
+- (IBAction)press25:(UIButton *)sender {
+}
 
 
 /*
