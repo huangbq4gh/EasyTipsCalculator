@@ -11,9 +11,9 @@
 
 @interface MainViewController ()
 
-@property (weak, nonatomic) IBOutlet UILabel *amount;
+@property (strong, nonatomic) IBOutlet UILabel *amount;
 
-@property (weak, nonatomic) NSString *s;
+@property (strong, nonatomic) NSString *s;
 @end
 
 @implementation MainViewController

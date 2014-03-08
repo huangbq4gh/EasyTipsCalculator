@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1F50BB6118CAC97D00317A41 /* dotField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50BB6018CAC97D00317A41 /* dotField.m */; };
 		1F5B205818CA63D500C3994B /* ResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F5B205718CA63D500C3994B /* ResultViewController.m */; };
 		1FB9F89218C972C70091ECE1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB9F89118C972C70091ECE1 /* Foundation.framework */; };
 		1FB9F89418C972C70091ECE1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB9F89318C972C70091ECE1 /* CoreGraphics.framework */; };
@@ -35,6 +36,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1F50BB5618CAC89E00317A41 /* constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constant.h; sourceTree = "<group>"; };
+		1F50BB5F18CAC97D00317A41 /* dotField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dotField.h; sourceTree = "<group>"; };
+		1F50BB6018CAC97D00317A41 /* dotField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dotField.m; sourceTree = "<group>"; };
 		1F5B205618CA63D500C3994B /* ResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResultViewController.h; sourceTree = "<group>"; };
 		1F5B205718CA63D500C3994B /* ResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResultViewController.m; sourceTree = "<group>"; };
 		1FB9F88E18C972C70091ECE1 /* TipsCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipsCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -82,6 +86,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1F50BB5518CAC86300317A41 /* numpad */ = {
+			isa = PBXGroup;
+			children = (
+				1F50BB5618CAC89E00317A41 /* constant.h */,
+				1F50BB5F18CAC97D00317A41 /* dotField.h */,
+				1F50BB6018CAC97D00317A41 /* dotField.m */,
+			);
+			name = numpad;
+			sourceTree = "<group>";
+		};
 		1FB9F88518C972C70091ECE1 = {
 			isa = PBXGroup;
 			children = (
@@ -115,6 +129,7 @@
 		1FB9F89718C972C70091ECE1 /* TipsCalculator */ = {
 			isa = PBXGroup;
 			children = (
+				1F50BB5518CAC86300317A41 /* numpad */,
 				1FB9F8A318C972C70091ECE1 /* Main.storyboard */,
 				1FB9F8A918C972C70091ECE1 /* Images.xcassets */,
 				1FB9F89818C972C70091ECE1 /* Supporting Files */,
@@ -254,6 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F50BB6118CAC97D00317A41 /* dotField.m in Sources */,
 				1FB9F8A218C972C70091ECE1 /* AppDelegate.m in Sources */,
 				1FB9F8C818C97A290091ECE1 /* MainViewController.m in Sources */,
 				1FB9F89E18C972C70091ECE1 /* main.m in Sources */,
