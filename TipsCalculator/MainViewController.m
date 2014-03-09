@@ -16,14 +16,23 @@
 @property (strong, nonatomic) IBOutlet UISlider *splitSlider;
 @property (strong, nonatomic) IBOutlet UILabel *splitByLabel;
 @property (strong, nonatomic) IBOutlet UILabel *splitTotal;
+@property (strong, nonatomic) IBOutlet UILabel *tipPercLabel;
+@property (strong, nonatomic) IBOutlet UISlider *tipSlider;
 @property (strong, nonatomic) NSString *s;
 @property (nonatomic) float f;
+@property (nonatomic) float n;
 @end
 
 @implementation MainViewController
 @synthesize amount;
 @synthesize s;
 @synthesize f;
+@synthesize n;
+@synthesize splitByLabel;
+@synthesize splitSlider;
+@synthesize splitTotal;
+@synthesize tipPercLabel;
+@synthesize tipSlider;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,13 +47,14 @@
 {
     [super viewDidLoad];
     s = @"";
+    n = 1;
+    f = 10;
 	// Do any additional setup after loading the view.
    
     [amount addTarget:self
                     action:@selector(textFieldDidChange:)
           forControlEvents:UIControlEventEditingChanged];
     
-    self.f = 0.15;
 }
 
 - (void)didReceiveMemoryWarning
@@ -73,24 +83,31 @@
 }
 
 - (IBAction)textFieldDidChange:(id)sender {
-    CGFloat *bill = (CGFloat)[self.amount.text floatValue];
-    [self.tipsLabel setText:[NSString stringWithFormat:@"%0.2f",];
+    [self updateTextFields];
+}
+- (IBAction)tipSliderValueChanged:(UISlider *)sender {
+    int num = roundf([sender value]);
+    [sender setValue:num];
+    self.f = (float)num;
+    [self.tipPercLabel setText:[NSString stringWithFormat:@"%d%%",num]];
+    [self updateTextFields];
 }
 
-
-- (IBAction)press15:(UIButton *)sender {
-    f=0.15;
-}
-- (IBAction)press18:(UIButton *)sender {
-    f=0.18;
-}
-- (IBAction)press20:(UIButton *)sender {
-    f=0.20;
-}
-- (IBAction)press25:(UIButton *)sender {
-    f=0.25;
+- (IBAction)splitSliderValueChanged:(UISlider *)sender {
+    int num = roundf([sender value]);
+    [sender setValue:num];
+    self.n = (float)num;
+    [self.splitByLabel setText:[NSString stringWithFormat:@"%d",num]];
+    [self updateTextFields];
 }
 
+-(void)updateTextFields{
+    float bill = (float)[self.amount.text floatValue];
+    [self.tipsLabel setText:[NSString stringWithFormat:@"%0.2f",bill*f/100]];
+    [self.totalLabel setText:[NSString stringWithFormat:@"%0.2f",bill*(f+1)/100]];
+    NSString *str = [NSString stringWithFormat:@"%0.2f",(float)bill*(f+1)/n/100];
+    [self.splitTotal setText:str];
+}
 
 /*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
