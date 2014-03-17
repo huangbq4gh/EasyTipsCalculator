@@ -10,7 +10,7 @@
 #import "dotField.h"
 
 @interface MainViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *amount;
+@property (weak, nonatomic) IBOutlet UITextField *amountTextField;
 @property (strong, nonatomic) IBOutlet UILabel *tipsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *totalLabel;
 @property (strong, nonatomic) IBOutlet UISlider *splitSlider;
@@ -24,7 +24,7 @@
 @end
 
 @implementation MainViewController
-@synthesize amount;
+@synthesize amountTextField;
 @synthesize s;
 @synthesize f;
 @synthesize n;
@@ -51,10 +51,14 @@
     f = 10;
 	// Do any additional setup after loading the view.
    
-    [amount addTarget:self
+    [amountTextField addTarget:self
                     action:@selector(textFieldDidChange:)
           forControlEvents:UIControlEventEditingChanged];
+    UITapGestureRecognizer *tapToDismissKeyboard = [[UITapGestureRecognizer alloc]
+                                   initWithTarget:self
+                                   action:@selector(dismissKeyboard)];
     
+    [self.view addGestureRecognizer:tapToDismissKeyboard];
 }
 
 - (void)didReceiveMemoryWarning
@@ -65,7 +69,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
 {
-    if (textField == self.amount)
+    if (textField == self.amountTextField)
     {
         NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
         NSString *expression = @"^(0|[1-9][0-9]*)?(\\.([0-9]{1,2})?)?$";
@@ -102,11 +106,15 @@
 }
 
 -(void)updateTextFields{
-    float bill = (float)[self.amount.text floatValue];
+    float bill = (float)[self.amountTextField.text floatValue];
     [self.tipsLabel setText:[NSString stringWithFormat:@"%0.2f",bill*f/100]];
-    [self.totalLabel setText:[NSString stringWithFormat:@"%0.2f",bill*(f+1)/100]];
-    NSString *str = [NSString stringWithFormat:@"%0.2f",(float)bill*(f+1)/n/100];
+    [self.totalLabel setText:[NSString stringWithFormat:@"%0.2f",bill*(f/100+1)]];
+    NSString *str = [NSString stringWithFormat:@"%0.2f",(float)bill*(f/100+1)/n];
     [self.splitTotal setText:str];
+}
+
+-(void)dismissKeyboard {
+    [amountTextField resignFirstResponder];
 }
 
 /*
