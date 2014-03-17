@@ -16,6 +16,10 @@
 @property (strong, nonatomic) NSString *s;
 @property (nonatomic) float f;
 @property (nonatomic) float n;
+@property (strong, nonatomic) IBOutlet UIButton *t10;
+@property (strong, nonatomic) IBOutlet UIButton *t15;
+@property (strong, nonatomic) IBOutlet UIButton *t18;
+@property (strong, nonatomic) IBOutlet UIButton *t25;
 @end
 
 @implementation MainViewController
@@ -23,6 +27,10 @@
 @synthesize s;
 @synthesize f;
 @synthesize n;
+@synthesize t10;
+@synthesize t15;
+@synthesize t18;
+@synthesize t25;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -54,6 +62,7 @@
     //[[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     [self setNeedsStatusBarAppearanceUpdate];
     [amountTextField becomeFirstResponder];
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,10 +101,14 @@
 - (IBAction)tipButton10:(UIButton *)sender {
     f=10;
     [self updateTextFields];
+
 }
 - (IBAction)tipButton15:(UIButton *)sender {
     f=15;
     [self updateTextFields];
+
+    
+    
 }
 - (IBAction)tipButton18:(UIButton *)sender {
     f=18;
@@ -125,8 +138,31 @@
     }
 }
 */
+//Tableview musts
+/*
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
 
+    // Return the number of sections.
+    return 0;
+}
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 3;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"MyStaticCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    cell.textLabel.text = [NSString stringWithFormat:@"Test%d",indexPath.row+1];
+    return cell;
+}
+*/
 
 
 @end

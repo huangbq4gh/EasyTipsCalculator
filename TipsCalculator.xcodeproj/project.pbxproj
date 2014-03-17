@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1F2BE53318CBCB380033E120 /* IconCalculator.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F2BE53218CBCB380033E120 /* IconCalculator.png */; };
 		1F50BB6118CAC97D00317A41 /* dotField.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F50BB6018CAC97D00317A41 /* dotField.m */; };
+		1F9B46D418D6B8340048FFBF /* inputbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F9B46D318D6B8340048FFBF /* inputbg.png */; };
+		1F9B46D618D6B8830048FFBF /* buttonbg.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F9B46D518D6B8830048FFBF /* buttonbg.png */; };
+		1F9B46D818D6B8DE0048FFBF /* button-selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 1F9B46D718D6B8DE0048FFBF /* button-selected.png */; };
+		1F9B46DB18D6C00A0048FFBF /* tbTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1F9B46DA18D6C00A0048FFBF /* tbTableViewController.m */; };
 		1FB9F89218C972C70091ECE1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB9F89118C972C70091ECE1 /* Foundation.framework */; };
 		1FB9F89418C972C70091ECE1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB9F89318C972C70091ECE1 /* CoreGraphics.framework */; };
 		1FB9F89618C972C70091ECE1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1FB9F89518C972C70091ECE1 /* UIKit.framework */; };
@@ -40,6 +44,11 @@
 		1F50BB5618CAC89E00317A41 /* constant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = constant.h; sourceTree = "<group>"; };
 		1F50BB5F18CAC97D00317A41 /* dotField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = dotField.h; sourceTree = "<group>"; };
 		1F50BB6018CAC97D00317A41 /* dotField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = dotField.m; sourceTree = "<group>"; };
+		1F9B46D318D6B8340048FFBF /* inputbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = inputbg.png; sourceTree = "<group>"; };
+		1F9B46D518D6B8830048FFBF /* buttonbg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttonbg.png; sourceTree = "<group>"; };
+		1F9B46D718D6B8DE0048FFBF /* button-selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button-selected.png"; sourceTree = "<group>"; };
+		1F9B46D918D6C00A0048FFBF /* tbTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tbTableViewController.h; sourceTree = "<group>"; };
+		1F9B46DA18D6C00A0048FFBF /* tbTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = tbTableViewController.m; sourceTree = "<group>"; };
 		1FB9F88E18C972C70091ECE1 /* TipsCalculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TipsCalculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1FB9F89118C972C70091ECE1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		1FB9F89318C972C70091ECE1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -98,6 +107,9 @@
 		1F50BB6518CAD79800317A41 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				1F9B46D718D6B8DE0048FFBF /* button-selected.png */,
+				1F9B46D318D6B8340048FFBF /* inputbg.png */,
+				1F9B46D518D6B8830048FFBF /* buttonbg.png */,
 				1F2BE53218CBCB380033E120 /* IconCalculator.png */,
 			);
 			name = img;
@@ -143,6 +155,8 @@
 				1FB9F89818C972C70091ECE1 /* Supporting Files */,
 				1FB9F8C618C97A290091ECE1 /* MainViewController.h */,
 				1FB9F8C718C97A290091ECE1 /* MainViewController.m */,
+				1F9B46D918D6C00A0048FFBF /* tbTableViewController.h */,
+				1F9B46DA18D6C00A0048FFBF /* tbTableViewController.m */,
 			);
 			path = TipsCalculator;
 			sourceTree = "<group>";
@@ -254,10 +268,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1F9B46D618D6B8830048FFBF /* buttonbg.png in Resources */,
 				1F2BE53318CBCB380033E120 /* IconCalculator.png in Resources */,
 				1FB9F8AA18C972C70091ECE1 /* Images.xcassets in Resources */,
+				1F9B46D418D6B8340048FFBF /* inputbg.png in Resources */,
 				1FB9F89C18C972C70091ECE1 /* InfoPlist.strings in Resources */,
 				1FB9F8A518C972C70091ECE1 /* Main.storyboard in Resources */,
+				1F9B46D818D6B8DE0048FFBF /* button-selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -278,6 +295,7 @@
 			files = (
 				1F50BB6118CAC97D00317A41 /* dotField.m in Sources */,
 				1FB9F8A218C972C70091ECE1 /* AppDelegate.m in Sources */,
+				1F9B46DB18D6C00A0048FFBF /* tbTableViewController.m in Sources */,
 				1FB9F8C818C97A290091ECE1 /* MainViewController.m in Sources */,
 				1FB9F89E18C972C70091ECE1 /* main.m in Sources */,
 			);
