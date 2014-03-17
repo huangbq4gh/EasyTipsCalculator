@@ -13,11 +13,6 @@
 @property (weak, nonatomic) IBOutlet UITextField *amountTextField;
 @property (strong, nonatomic) IBOutlet UILabel *tipsLabel;
 @property (strong, nonatomic) IBOutlet UILabel *totalLabel;
-@property (strong, nonatomic) IBOutlet UISlider *splitSlider;
-@property (strong, nonatomic) IBOutlet UILabel *splitByLabel;
-@property (strong, nonatomic) IBOutlet UILabel *splitTotal;
-@property (strong, nonatomic) IBOutlet UILabel *tipPercLabel;
-@property (strong, nonatomic) IBOutlet UISlider *tipSlider;
 @property (strong, nonatomic) NSString *s;
 @property (nonatomic) float f;
 @property (nonatomic) float n;
@@ -28,11 +23,7 @@
 @synthesize s;
 @synthesize f;
 @synthesize n;
-@synthesize splitByLabel;
-@synthesize splitSlider;
-@synthesize splitTotal;
-@synthesize tipPercLabel;
-@synthesize tipSlider;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +31,7 @@
     if (self) {
         // Custom initialization
     }
+    
     return self;
 }
 
@@ -59,12 +51,19 @@
                                    action:@selector(dismissKeyboard)];
     
     [self.view addGestureRecognizer:tapToDismissKeyboard];
+    //[[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
+    [self setNeedsStatusBarAppearanceUpdate];
+    [amountTextField becomeFirstResponder];
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (UIStatusBarStyle) preferredStatusBarStyle {
+    return UIStatusBarStyleLightContent;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
@@ -89,19 +88,21 @@
 - (IBAction)textFieldDidChange:(id)sender {
     [self updateTextFields];
 }
-- (IBAction)tipSliderValueChanged:(UISlider *)sender {
-    int num = roundf([sender value]);
-    [sender setValue:num];
-    self.f = (float)num;
-    [self.tipPercLabel setText:[NSString stringWithFormat:@"%d%%",num]];
+
+- (IBAction)tipButton10:(UIButton *)sender {
+    f=10;
     [self updateTextFields];
 }
-
-- (IBAction)splitSliderValueChanged:(UISlider *)sender {
-    int num = roundf([sender value]);
-    [sender setValue:num];
-    self.n = (float)num;
-    [self.splitByLabel setText:[NSString stringWithFormat:@"%d",num]];
+- (IBAction)tipButton15:(UIButton *)sender {
+    f=15;
+    [self updateTextFields];
+}
+- (IBAction)tipButton18:(UIButton *)sender {
+    f=18;
+    [self updateTextFields];
+}
+- (IBAction)tipButton25:(UIButton *)sender {
+    f=25;
     [self updateTextFields];
 }
 
@@ -109,8 +110,7 @@
     float bill = (float)[self.amountTextField.text floatValue];
     [self.tipsLabel setText:[NSString stringWithFormat:@"%0.2f",bill*f/100]];
     [self.totalLabel setText:[NSString stringWithFormat:@"%0.2f",bill*(f/100+1)]];
-    NSString *str = [NSString stringWithFormat:@"%0.2f",(float)bill*(f/100+1)/n];
-    [self.splitTotal setText:str];
+    
 }
 
 -(void)dismissKeyboard {
