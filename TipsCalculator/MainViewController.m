@@ -101,14 +101,10 @@
 - (IBAction)tipButton10:(UIButton *)sender {
     f=10;
     [self updateTextFields];
-
 }
 - (IBAction)tipButton15:(UIButton *)sender {
     f=15;
     [self updateTextFields];
-
-    
-    
 }
 - (IBAction)tipButton18:(UIButton *)sender {
     f=18;
