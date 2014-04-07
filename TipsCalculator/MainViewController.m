@@ -16,10 +16,12 @@
 @property (strong, nonatomic) NSString *s;
 @property (nonatomic) float f;
 @property (nonatomic) float n;
-@property (strong, nonatomic) IBOutlet UIButton *t10;
-@property (strong, nonatomic) IBOutlet UIButton *t15;
-@property (strong, nonatomic) IBOutlet UIButton *t18;
-@property (strong, nonatomic) IBOutlet UIButton *t25;
+@property (weak, nonatomic) IBOutlet UIButton *t10;
+@property (weak, nonatomic) IBOutlet UIButton *t15;
+@property (weak, nonatomic) IBOutlet UIButton *t18;
+@property (weak, nonatomic) IBOutlet UIButton *t25;
+@property (strong, nonatomic) IBOutlet UISlider *tipScroll;
+@property (strong, nonatomic) IBOutlet UIButton *sliderBtn;
 @end
 
 @implementation MainViewController
@@ -31,7 +33,8 @@
 @synthesize t15;
 @synthesize t18;
 @synthesize t25;
-
+@synthesize tipScroll;
+@synthesize sliderBtn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,15 +57,13 @@
     [amountTextField addTarget:self
                     action:@selector(textFieldDidChange:)
           forControlEvents:UIControlEventEditingChanged];
-    UITapGestureRecognizer *tapToDismissKeyboard = [[UITapGestureRecognizer alloc]
-                                   initWithTarget:self
-                                   action:@selector(dismissKeyboard)];
-    
+    UITapGestureRecognizer *tapToDismissKeyboard = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tapToDismissKeyboard];
     //[[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     [self setNeedsStatusBarAppearanceUpdate];
     [amountTextField becomeFirstResponder];
     
+    [tipScroll addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)didReceiveMemoryWarning
@@ -92,6 +93,12 @@
             return NO;
     }
     return YES;
+}
+
+- (IBAction)sliderValueChanged:(UISlider *)sender {
+    NSString *str = [NSString stringWithFormat:@"%.0f",tipScroll.value];
+    
+    [sliderBtn.titleLabel setText:str];
 }
 
 - (IBAction)textFieldDidChange:(id)sender {
