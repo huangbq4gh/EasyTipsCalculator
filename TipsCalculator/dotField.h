@@ -1,6 +1,6 @@
 //
 //  dotField.h
-//  TipsCalculator
+//  EasyTipsCalculator
 //
 //  Created by Bingqing Huang on 3/7/14.
 //  Copyright (c) 2014 Bingqing Huang. All rights reserved.

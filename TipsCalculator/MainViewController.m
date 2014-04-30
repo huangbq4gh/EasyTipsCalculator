@@ -19,9 +19,10 @@
 @property (weak, nonatomic) IBOutlet UIButton *t10;
 @property (weak, nonatomic) IBOutlet UIButton *t15;
 @property (weak, nonatomic) IBOutlet UIButton *t18;
-@property (weak, nonatomic) IBOutlet UIButton *t25;
+@property (weak, nonatomic) IBOutlet UIButton *t20;
 @property (strong, nonatomic) IBOutlet UISlider *tipScroll;
-@property (strong, nonatomic) IBOutlet UIButton *sliderBtn;
+@property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
+
 @end
 
 @implementation MainViewController
@@ -32,9 +33,10 @@
 @synthesize t10;
 @synthesize t15;
 @synthesize t18;
-@synthesize t25;
+@synthesize t20;
 @synthesize tipScroll;
-@synthesize sliderBtn;
+@synthesize sliderLabel;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,6 +46,14 @@
     }
     
     return self;
+}
+
+-(void)awakeFromNib{
+    /*
+    UIImageView *bg = [[UIImageView alloc] initWithFrame:CGRectMake(40, 80, 280, 100)];
+    [bg setImage:[UIImage imageNamed:@"inputbg.png"]];
+    [self.view addSubview:bg];
+     */
 }
 
 - (void)viewDidLoad
@@ -57,13 +67,19 @@
     [amountTextField addTarget:self
                     action:@selector(textFieldDidChange:)
           forControlEvents:UIControlEventEditingChanged];
-    UITapGestureRecognizer *tapToDismissKeyboard = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyboard)];
+    UITapGestureRecognizer *tapToDismissKeyboard = [[UITapGestureRecognizer alloc]initWithTarget:self
+                                                                                          action:@selector(dismissKeyboard)];
     [self.view addGestureRecognizer:tapToDismissKeyboard];
     //[[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     [self setNeedsStatusBarAppearanceUpdate];
     [amountTextField becomeFirstResponder];
     
     [tipScroll addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    
+    [tipScroll setMaximumTrackImage:[UIImage imageNamed:@"slidertracker_max.png"] forState:UIControlStateNormal];
+    [tipScroll setMinimumTrackImage:[UIImage imageNamed:@"slidertracker_min.png"] forState:UIControlStateNormal];
+    [tipScroll setThumbImage:[UIImage imageNamed:@"scrollthumb.png"] forState:UIControlStateNormal];
+    [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"appbg.jpg"]]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -80,7 +96,8 @@
 {
     if (textField == self.amountTextField)
     {
-        NSString *newString = [textField.text stringByReplacingCharactersInRange:range withString:string];
+        NSString *newString = [textField.text stringByReplacingCharactersInRange:range
+                                                                      withString:string];
         NSString *expression = @"^(0|[1-9][0-9]*)?(\\.([0-9]{1,2})?)?$";
         NSError *error = nil;
         NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:expression
@@ -96,30 +113,63 @@
 }
 
 - (IBAction)sliderValueChanged:(UISlider *)sender {
-    NSString *str = [NSString stringWithFormat:@"%.0f",tipScroll.value];
-    
-    [sliderBtn.titleLabel setText:str];
+    int num = roundf(sender.value);
+    NSString *str = [NSString stringWithFormat:@"%d%%",num];
+    [sliderLabel setText:[NSString stringWithFormat:@"%@",str]];
+    f = num;
+    if ([t10 isSelected]||[t15 isSelected]||[t18 isSelected]||[t20 isSelected]) {
+        [t10 setSelected:NO];
+        [t15 setSelected:NO];
+        [t18 setSelected:NO];
+        [t20 setSelected:NO];
+    }
+    [self updateTextFields];
 }
 
 - (IBAction)textFieldDidChange:(id)sender {
     [self updateTextFields];
+    
 }
 
 - (IBAction)tipButton10:(UIButton *)sender {
     f=10;
     [self updateTextFields];
+    [sender setSelected:YES];
+    [t15 setSelected:NO];
+    [t18 setSelected:NO];
+    [t20 setSelected:NO];
+    [tipScroll setValue:10];
+    [sliderLabel setText:[NSString stringWithFormat:@"10%%"]];
 }
 - (IBAction)tipButton15:(UIButton *)sender {
     f=15;
     [self updateTextFields];
+    [sender setSelected:YES];
+    [t10 setSelected:NO];
+    [t18 setSelected:NO];
+    [t20 setSelected:NO];
+    [tipScroll setValue:15];
+    [sliderLabel setText:[NSString stringWithFormat:@"15%%"]];
 }
 - (IBAction)tipButton18:(UIButton *)sender {
     f=18;
     [self updateTextFields];
+    [sender setSelected:YES];
+    [t15 setSelected:NO];
+    [t10 setSelected:NO];
+    [t20 setSelected:NO];
+    [tipScroll setValue:18];
+    [sliderLabel setText:[NSString stringWithFormat:@"18%%"]];
 }
-- (IBAction)tipButton25:(UIButton *)sender {
-    f=25;
+- (IBAction)tipButton20:(UIButton *)sender {
+    f=20;
     [self updateTextFields];
+    [sender setSelected:YES];
+    [t15 setSelected:NO];
+    [t18 setSelected:NO];
+    [t10 setSelected:NO];
+    [tipScroll setValue:20];
+    [sliderLabel setText:[NSString stringWithFormat:@"20%%"]];
 }
 
 -(void)updateTextFields{
@@ -133,6 +183,10 @@
     [amountTextField resignFirstResponder];
 }
 
+
+
+
+
 /*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     if ([segue.identifier isEqualToString:@"toResult"]) {
@@ -141,31 +195,7 @@
     }
 }
 */
-//Tableview musts
-/*
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
 
-    // Return the number of sections.
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return 3;
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *CellIdentifier = @"MyStaticCell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    cell.textLabel.text = [NSString stringWithFormat:@"Test%d",indexPath.row+1];
-    return cell;
-}
-*/
 
 
 @end
