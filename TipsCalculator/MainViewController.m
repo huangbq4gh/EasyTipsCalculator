@@ -10,33 +10,22 @@
 #import "dotField.h"
 
 @interface MainViewController ()
-@property (weak, nonatomic) IBOutlet UITextField *amountTextField;
-@property (strong, nonatomic) IBOutlet UILabel *tipsLabel;
-@property (strong, nonatomic) IBOutlet UILabel *totalLabel;
-@property (strong, nonatomic) NSString *s;
+@property (nonatomic) IBOutlet UITextField *amountTextField;
+@property (nonatomic) IBOutlet UILabel *tipsLabel;
+@property (nonatomic) IBOutlet UILabel *totalLabel;
+@property (nonatomic) NSString *s;
 @property (nonatomic) float f;
 @property (nonatomic) float n;
-@property (weak, nonatomic) IBOutlet UIButton *t10;
-@property (weak, nonatomic) IBOutlet UIButton *t15;
-@property (weak, nonatomic) IBOutlet UIButton *t18;
-@property (weak, nonatomic) IBOutlet UIButton *t20;
-@property (strong, nonatomic) IBOutlet UISlider *tipScroll;
-@property (weak, nonatomic) IBOutlet UILabel *sliderLabel;
+@property (nonatomic) IBOutlet UIButton *t10;
+@property (nonatomic) IBOutlet UIButton *t15;
+@property (nonatomic) IBOutlet UIButton *t18;
+@property (nonatomic) IBOutlet UIButton *t20;
+@property (nonatomic) IBOutlet UISlider *tipScroll;
+@property (nonatomic) IBOutlet UILabel *sliderLabel;
 
 @end
 
 @implementation MainViewController
-@synthesize amountTextField;
-@synthesize s;
-@synthesize f;
-@synthesize n;
-@synthesize t10;
-@synthesize t15;
-@synthesize t18;
-@synthesize t20;
-@synthesize tipScroll;
-@synthesize sliderLabel;
-
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -59,12 +48,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    s = @"";
-    n = 1;
-    f = 10;
+    self.s = @"";
+    self.n = 1;
+    self.f = 10;
 	// Do any additional setup after loading the view.
    
-    [amountTextField addTarget:self
+    [self.amountTextField addTarget:self
                     action:@selector(textFieldDidChange:)
           forControlEvents:UIControlEventEditingChanged];
     UITapGestureRecognizer *tapToDismissKeyboard = [[UITapGestureRecognizer alloc]initWithTarget:self
@@ -72,13 +61,13 @@
     [self.view addGestureRecognizer:tapToDismissKeyboard];
     //[[UIApplication sharedApplication]setStatusBarStyle:UIStatusBarStyleLightContent];
     [self setNeedsStatusBarAppearanceUpdate];
-    [amountTextField becomeFirstResponder];
+    [self.amountTextField becomeFirstResponder];
     
-    [tipScroll addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
+    [self.tipScroll addTarget:self action:@selector(sliderValueChanged:) forControlEvents:UIControlEventValueChanged];
     
-    [tipScroll setMaximumTrackImage:[UIImage imageNamed:@"slidertracker_max.png"] forState:UIControlStateNormal];
-    [tipScroll setMinimumTrackImage:[UIImage imageNamed:@"slidertracker_min.png"] forState:UIControlStateNormal];
-    [tipScroll setThumbImage:[UIImage imageNamed:@"scrollthumb.png"] forState:UIControlStateNormal];
+    [self.tipScroll setMaximumTrackImage:[UIImage imageNamed:@"slidertracker_max.png"] forState:UIControlStateNormal];
+    [self.tipScroll setMinimumTrackImage:[UIImage imageNamed:@"slidertracker_min.png"] forState:UIControlStateNormal];
+    [self.tipScroll setThumbImage:[UIImage imageNamed:@"scrollthumb.png"] forState:UIControlStateNormal];
     [self.view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"appbg.jpg"]]];
 }
 
@@ -115,13 +104,13 @@
 - (IBAction)sliderValueChanged:(UISlider *)sender {
     int num = roundf(sender.value);
     NSString *str = [NSString stringWithFormat:@"%d%%",num];
-    [sliderLabel setText:[NSString stringWithFormat:@"%@",str]];
-    f = num;
-    if ([t10 isSelected]||[t15 isSelected]||[t18 isSelected]||[t20 isSelected]) {
-        [t10 setSelected:NO];
-        [t15 setSelected:NO];
-        [t18 setSelected:NO];
-        [t20 setSelected:NO];
+    [self.sliderLabel setText:[NSString stringWithFormat:@"%@",str]];
+    self.f = num;
+    if ([self.t10 isSelected]||[self.t15 isSelected]||[self.t18 isSelected]||[self.t20 isSelected]) {
+        [self.t10 setSelected:NO];
+        [self.t15 setSelected:NO];
+        [self.t18 setSelected:NO];
+        [self.t20 setSelected:NO];
     }
     [self updateTextFields];
 }
@@ -132,55 +121,55 @@
 }
 
 - (IBAction)tipButton10:(UIButton *)sender {
-    f=10;
+    self.f=10;
     [self updateTextFields];
     [sender setSelected:YES];
-    [t15 setSelected:NO];
-    [t18 setSelected:NO];
-    [t20 setSelected:NO];
-    [tipScroll setValue:10];
-    [sliderLabel setText:[NSString stringWithFormat:@"10%%"]];
+    [self.t15 setSelected:NO];
+    [self.t18 setSelected:NO];
+    [self.t20 setSelected:NO];
+    [self.tipScroll setValue:10];
+    [self.sliderLabel setText:[NSString stringWithFormat:@"10%%"]];
 }
 - (IBAction)tipButton15:(UIButton *)sender {
-    f=15;
+    self.f=15;
     [self updateTextFields];
     [sender setSelected:YES];
-    [t10 setSelected:NO];
-    [t18 setSelected:NO];
-    [t20 setSelected:NO];
-    [tipScroll setValue:15];
-    [sliderLabel setText:[NSString stringWithFormat:@"15%%"]];
+    [self.t10 setSelected:NO];
+    [self.t18 setSelected:NO];
+    [self.t20 setSelected:NO];
+    [self.tipScroll setValue:15];
+    [self.sliderLabel setText:[NSString stringWithFormat:@"15%%"]];
 }
 - (IBAction)tipButton18:(UIButton *)sender {
-    f=18;
+    self.f=18;
     [self updateTextFields];
     [sender setSelected:YES];
-    [t15 setSelected:NO];
-    [t10 setSelected:NO];
-    [t20 setSelected:NO];
-    [tipScroll setValue:18];
-    [sliderLabel setText:[NSString stringWithFormat:@"18%%"]];
+    [self.t15 setSelected:NO];
+    [self.t10 setSelected:NO];
+    [self.t20 setSelected:NO];
+    [self.tipScroll setValue:18];
+    [self.sliderLabel setText:[NSString stringWithFormat:@"18%%"]];
 }
 - (IBAction)tipButton20:(UIButton *)sender {
-    f=20;
+    self.f=20;
     [self updateTextFields];
     [sender setSelected:YES];
-    [t15 setSelected:NO];
-    [t18 setSelected:NO];
-    [t10 setSelected:NO];
-    [tipScroll setValue:20];
-    [sliderLabel setText:[NSString stringWithFormat:@"20%%"]];
+    [self.t15 setSelected:NO];
+    [self.t18 setSelected:NO];
+    [self.t10 setSelected:NO];
+    [self.tipScroll setValue:20];
+    [self.sliderLabel setText:[NSString stringWithFormat:@"20%%"]];
 }
 
 -(void)updateTextFields{
     float bill = (float)[self.amountTextField.text floatValue];
-    [self.tipsLabel setText:[NSString stringWithFormat:@"%0.2f",bill*f/100]];
-    [self.totalLabel setText:[NSString stringWithFormat:@"%0.2f",bill*(f/100+1)]];
+    [self.tipsLabel setText:[NSString stringWithFormat:@"%0.2f",bill*self.f/100]];
+    [self.totalLabel setText:[NSString stringWithFormat:@"%0.2f",bill*(self.f/100+1)]];
     
 }
 
 -(void)dismissKeyboard {
-    [amountTextField resignFirstResponder];
+    [self.amountTextField resignFirstResponder];
 }
 
 
